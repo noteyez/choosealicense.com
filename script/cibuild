@@ -3,5 +3,10 @@
 set -e
 
 echo "building the site..."
+echo "running tests..."
 bundle exec rake test
+
+echo "running RuboCop..."
 bundle exec rubocop -D -S
+
+echo "build completed successfully."
