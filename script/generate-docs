@@ -1,3 +1,4 @@
+```ruby
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
@@ -17,15 +18,17 @@ fields.each do |field|
 end
 
 puts "\n### YAML front matter\n"
-meta = meta.group_by { |m| m['required'] }
+
+required_meta = meta.select { |field| field['required'] }
+optional_meta = meta.reject { |field| field['required'] }
 
 puts "\n#### Required fields\n\n"
-meta[true].each do |field|
+required_meta.each do |field|
   puts "* `#{field['name']}` - #{field['description']}"
 end
 
 puts "\n#### Optional fields\n\n"
-meta[false].each do |field|
+optional_meta.each do |field|
   puts "* `#{field['name']}` - #{field['description']}"
 end
 
@@ -36,3 +39,4 @@ rules.each do |group, group_rules|
     puts "* `#{rule['tag']}` - #{rule['description']}"
   end
 end
+```
